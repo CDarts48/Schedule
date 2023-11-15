@@ -8,7 +8,7 @@ $(document).ready()
 
   saveBtn.on('click', function() {
     {
-      $.localStorage.set("textArea", textArea.val());
+      localStorage.setItem("textArea", textArea.val());
       console.log(saveBtn)
     }
 
