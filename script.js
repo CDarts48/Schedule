@@ -6,11 +6,10 @@ var saveBtn = $(".saveBtn");
 var textArea = $(".textarea");
 $(document).ready()
 
-function save () {
-  saveBtn.click(function() {
+  saveBtn.on('click', function() {
     {
       $.localStorage.set("textArea", textArea.val());
-      console.log(localStorage)
+      console.log(saveBtn)
     }
 
   });
@@ -33,4 +32,4 @@ function save () {
   // attribute of each time-block be used to do this?
   //
   // TODO: Add code to display the current date in the header of the page.
-};
+
