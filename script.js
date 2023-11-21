@@ -1,17 +1,19 @@
 // Wrap all code that interacts with the DOM in a call to jQuery to ensure that
 // the code isn't run until the browser has finished rendering all the elements
-// in the html.
-console.log("hello world")
+// in the html. $(document).ready() is a jQuery function that wraps code to ensure that
+// the code isn't run until the browser has finished rendering all the elements
 var saveBtn = $(".saveBtn");
 var textArea = $(".textarea");
+const currentHour = dayjs().get('hour');
+console.log(currentHour);
 $(document).ready()
 
-  saveBtn.on('click', function() {
-    {
-      localStorage.setItem("textArea", textArea.val());
-      console.log(saveBtn)
-    }
-
+  saveBtn.click(function() {
+    var parent = $(this).parent().attr("id");
+    var sibling = $(this).siblings("textarea").val();
+    console.log ($(this).parent().attr("id"));
+      localStorage.setItem(parent, sibling);
+      console.log(sibling);
   });
 
   // TODO: Add a listener for click events on the save button. This code should
@@ -21,6 +23,20 @@ $(document).ready()
   // time-block containing the button that was clicked? How might the id be
   // useful when saving the description in local storage?
   //
+
+
+$(".time-block").each(function() {
+  var blockHour = parseInt($(this).attr("id"));
+
+  if (blockHour < currentHour) {
+    $(this).addClass("past").removeClass("present future");
+  } else if (blockHour === currentHour) {
+    $(this).addClass("present").removeClass("past future");
+  } else {
+    $(this).addClass("future").removeClass("past present");
+  }
+});
+
   // TODO: Add code to apply the past, present, or future class to each time
   // block by comparing the id to the current hour. HINTS: How can the id
   // attribute of each time-block be used to conditionally add or remove the
@@ -33,3 +49,6 @@ $(document).ready()
   //
   // TODO: Add code to display the current date in the header of the page.
 
+// if (interger === true) 
+// console.log (textArea)
+// else if (interger === false)
